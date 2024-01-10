@@ -2,7 +2,7 @@ name: Teste Build Template
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 # Os jobs que irão rodar
 jobs:
