@@ -1,0 +1,26 @@
+name: Teste Build Template
+
+env:
+  PROJETO: "ai-chat-natura-api"
+  NAMESPACE: "ai-chat-natura"
+  REGISTRY: "us-central1-docker.pkg.dev"
+  ENDPOINT: "sysmap-coe-tecnologia/ai-chat-natura"
+
+on:
+  push:
+    branches: [main]
+
+# Os jobs que irão rodar
+jobs:
+  build_job:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.4.0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "12.0.0"
+      - run: |
+          npm ci
+          npm run build --f-present
+          npm test
