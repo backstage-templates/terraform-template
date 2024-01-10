@@ -12,15 +12,30 @@ on:
 
 # Os jobs que irão rodar
 jobs:
-  build_job:
-    name: build
+  build:
+    name: Build
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2.4.0
-      - uses: actions/setup-node@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Installing Node.js
+        uses: actions/setup-node@v1
         with:
-          node-version: "12.0.0"
-      - run: |
-          npm ci
-          npm run build --f-present
-          npm test
+          node-version: 16.x
+
+      - name: Installing NPM packages
+        run: npm ci
+
+      - name: Building project
+        run: npm run build
+
+      - name: Running tests
+        run: npm run test
+
+      - name: Uploading production-ready build files
+        uses: actions/upload-artifact@v2
+        with:
+          name: production-files
+          path: ./build
