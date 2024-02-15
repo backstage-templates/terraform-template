@@ -1,14 +1,28 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{values.component_id | dump}}
-  {%- if values.description %}
-  description: ${{values.description | dump}}
-  {%- endif %}
+  name: backstage-coe-tech-projeto-3
   annotations:
-    github.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
     backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: coe-tech
+    backstage.io/kubernetes-namespace: backstage-ms
+    github.com/project-slug: coe-tech/backstage-coe-tech-projeto-3
+    gitlab.com/project-slug: backstage-apis/backstage-coe-tech-projeto-3
+    dev.azure.com/project-repo: backstage-apis/backstage-coe-tech-projeto-3
+    sonarqube.org/project-key: backstage-coe-tech-projeto-3
+  tags:
+      - frontend
+      - react
+  links:
+    - url: https://frontreact.rfp.sysmap.dev
+      title: WebApp
+      icon: dashboard
+      type: admin-dashboard
 spec:
-  type: website
-  lifecycle: experimental
-  owner: ${{values.owner | dump}}
+  type: service
+  lifecycle: production
+  owner: group:default/equipe-3
+  system: minha-empresa
+  consumesApis: []
+  dependsOn:
+    - Component:backstage-coe-tech-projeto-1
