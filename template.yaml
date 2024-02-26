@@ -2,51 +2,51 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: AWS-Template
-  title: VPC and an EC2 instance in AWS.
+  title: Instance in AWS.
   description: Common Resources Implement Scaffolder
   tags:
     - devops
     - coe-tech
   spec:
-  owner: vittormaciel
-  type: service
-  parameters:
-    - title: Provide some simple information about resource
-      required:
-        - bucket_name
-        - aws_zone
-      properties:
-        machine_name:
-          title: Bucket Name
-          type: string
-          description: S3 Bucket Name.
-          pattern: '^\S*[a-z\-]$'
-        gcp_zone:
-          title: AWS Zone
-          type: string
-          description: Zone of deploy resource
-          default: sa-east-1
-          enum:
-            - sa-east-1
-        owner:
-          title: Owner
-          type: string
-          description: Owner of the component
-          ui:field: OwnerPicker
-          ui:options:
-            allowedKinds:
-              - Group
-    - title: Choose a location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
+    owner: vittormaciel
+    type: service
+    parameters:
+      - title: Provide some simple information about resource
+        required:
+          - bucket_name
+          - aws_zone
+        properties:
+          machine_name:
+            title: Bucket Name
+            type: string
+            description: S3 Bucket Name.
+            pattern: '^\S*[a-z\-]$'
+          gcp_zone:
+            title: AWS Zone
+            type: string
+            description: Zone of deploy resource
+            default: sa-east-1
+            enum:
+              - sa-east-1
+          owner:
+            title: Owner
+            type: string
+            description: Owner of the component
+            ui:field: OwnerPicker
+            ui:options:
+              allowedKinds:
+                - Group
+      - title: Choose a location
+        required:
+          - repoUrl
+        properties:
+          repoUrl:
+            title: Repository Location
+            type: string
+            ui:field: RepoUrlPicker
+            ui:options:
+              allowedHosts:
+                - github.com
   steps:
     - id: template
       name: Fetch Skeleton + Template
