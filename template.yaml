@@ -1,33 +1,30 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: awptemplate
-  title: Instance in AWS.
-  description: Common Resources Implement Scaffolder
+  name: create-terraform-instance-example
+  title: Create Terraform Instance Template
+  description: Create a new Terraform Template
   tags:
+    - terraform
     - devops
-    - coe-tech
 spec:
   owner: vittormaciel
-  type: service
+  type: instance
   parameters:
-    - title: Provide some simple information about resource
+    - title: Provide some simple information
       required:
-        - bucket_name
-        - aws_zone
+        - component_id
+        - owner
       properties:
-        bucket_name:
-          title: Bucket Name
+        component_id:
+          title: Name
           type: string
-          description: S3 Bucket Name.
-          pattern: '^\S*[a-z\-]$'
-        aws_zone:
-          title: AWS Zone
+          description: Unique name of the component
+          ui:field: EntityNamePicker
+        description:
+          title: Description
           type: string
-          description: Zone of deploy resource
-          default: sa-east-1
-          enum:
-            - sa-east-1
+          description: Help others understand what this Terraform is for.
         owner:
           title: Owner
           type: string
@@ -56,8 +53,8 @@ spec:
         copyWithoutRender:
           - .github/workflows/*
         values:
-          component_id: ${{ parameters.bucket_name }}
-          description: ${{ parameters.aws_zone }}
+          component_id: ${{ parameters.component_id }}
+          description: ${{ parameters.description }}
           destination: ${{ parameters.repoUrl | parseRepoUrl }}
           owner: ${{ parameters.owner }}
 
@@ -66,8 +63,8 @@ spec:
       action: publish:github
       input:
         allowedHosts:
-          - github.com/backstage-templates
-        description: This is ${{ parameters.bucket_name }}
+          - github.com
+        description: This is ${{ parameters.component_id }}
         repoUrl: ${{ parameters.repoUrl }}
 
     - id: register
