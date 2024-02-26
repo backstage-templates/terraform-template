@@ -43,7 +43,7 @@ spec:
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
-              - github.com/backstage-templates
+              - github.com
   steps:
     - id: template
       name: Fetch Skeleton + Template
@@ -63,7 +63,7 @@ spec:
       action: publish:github
       input:
         allowedHosts:
-          - github.com/backstage-templates
+          - github.com
         description: This is ${{ parameters.component_id }}
         repoUrl: ${{ parameters.repoUrl }}
 
