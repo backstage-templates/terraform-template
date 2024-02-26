@@ -1,30 +1,33 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: create-react-app-template
-  title: Create React App Template
-  description: Create a new CRA website project
+  name: AWS-Template
+  title: VPC and an EC2 instance in AWS.
+  description: Common Resources Implement Scaffolder
   tags:
-    - react
-    - cra
-spec:
-  owner: web@example.com
-  type: website
+    - devops
+    - coe-tech
+  spec:
+  owner: vittormaciel
+  type: service
   parameters:
-    - title: Provide some simple information
+    - title: Provide some simple information about resource
       required:
-        - component_id
-        - owner
+        - bucket_name
+        - aws_zone
       properties:
-        component_id:
-          title: Name
+        machine_name:
+          title: Bucket Name
           type: string
-          description: Unique name of the component
-          ui:field: EntityNamePicker
-        description:
-          title: Description
+          description: S3 Bucket Name.
+          pattern: '^\S*[a-z\-]$'
+        gcp_zone:
+          title: AWS Zone
           type: string
-          description: Help others understand what this website is for.
+          description: Zone of deploy resource
+          default: sa-east-1
+          enum:
+            - sa-east-1
         owner:
           title: Owner
           type: string
@@ -53,8 +56,8 @@ spec:
         copyWithoutRender:
           - .github/workflows/*
         values:
-          component_id: ${{ parameters.component_id }}
-          description: ${{ parameters.description }}
+          component_id: ${{ parameters.bucket_name }}
+          description: ${{ parameters.aws_zone }}
           destination: ${{ parameters.repoUrl | parseRepoUrl }}
           owner: ${{ parameters.owner }}
 
@@ -64,7 +67,7 @@ spec:
       input:
         allowedHosts:
           - github.com
-        description: This is ${{ parameters.component_id }}
+        description: This is ${{ parameters.bucket_name }}
         repoUrl: ${{ parameters.repoUrl }}
 
     - id: register
