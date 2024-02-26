@@ -1,10 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{values.bucket_name | dump}}
-  {%- if values.aws_zone %}
-  AWS Zone: ${{values.aws_zone | dump}}
-  {%- endif %}
+  name: ${{values.bucket_name}}
+  AWS Zone: ${{values.aws_zone}}
   annotations:
     github.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
     backstage.io/techdocs-ref: dir:.

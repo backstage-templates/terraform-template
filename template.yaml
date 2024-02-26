@@ -52,7 +52,7 @@ metadata:
       name: Fetch Skeleton + Template
       action: fetch:template
       input:
-        url: ./skeleton
+        url: ./terraform
         copyWithoutRender:
           - .github/workflows/*
         values:
