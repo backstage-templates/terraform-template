@@ -11,7 +11,7 @@ spec:
   owner: vittormaciel
   type: instance
   parameters:
-    - title: Provide some simple information
+    - title: Forneça algumas simples informações
       required:
         - component_id
         - owner
