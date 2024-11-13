@@ -2,8 +2,8 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: create-terraform-instance-example
-  title: Create Terraform Instance Template
-  description: Create a new Terraform Template
+  title: Terraform Template
+  description: Crie uma nova instancia com terraform
   tags:
     - terraform
     - devops
@@ -19,16 +19,16 @@ spec:
         component_id:
           title: Name
           type: string
-          description: Unique name of the component
+          description: Nome do componente
           ui:field: EntityNamePicker
         description:
-          title: Description
+          title: Descrição
           type: string
-          description: Help others understand what this Terraform is for.
+          description: O que o seu terraform faz?
         owner:
-          title: Owner
+          title: Proprietário
           type: string
-          description: Owner of the component
+          description: Proprietário do componente Terraform
           ui:field: OwnerPicker
           ui:options:
             allowedKinds:
